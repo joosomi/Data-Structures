@@ -71,7 +71,7 @@ int main()
 		case 3:
 			printf("The resulting sorted linked list is: ");
 			printList(&ll);
-			removeAllItems(&ll);
+			//removeAllItems(&ll);
 			break;
 		case 0:
 			removeAllItems(&ll);
@@ -88,11 +88,82 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-int insertSortedLL(LinkedList *ll, int item)
-{
-	/* add your code here */
-}
+//insertSortedLL
 
+// 정수 삽입 - 연결 리스트에 오름차순으로 정수 삽입 
+// 현재 연결 리스트에 삽입하려는 정수가 이미 있다면 삽입하지 않음
+	// 1. 현재 연결 리스트에 int item이 있는지 중복 확인
+	// 2. 현재 연결 리스트 안에 int item 값이 없다면 
+	
+	// 현재 ll에 오름차순으로 정여 삽입하려는 정수가 들어갈 index에 맞게 삽입
+		// new item이 추가되면 return index position 
+
+// 함수가 성공하지 못하면 return -1 
+// a sorted linked list  OR an empty list 
+
+int insertSortedLL(LinkedList *ll, int item) 
+{	
+	//현재의 index - curindex 
+	int curindex;
+	curindex= 0;
+
+	ListNode *cur; 
+	cur = ll -> head;
+
+	if (ll==NULL) 
+		return -1;
+	else 
+	{
+		//현재의 item이 insert하려는 item보다 작거나 같은 경우
+		while (cur != NULL && cur -> item <= item) {
+			//이미 값이 있는 경우 - 중복값인 경우
+			if (cur-> item == item) {
+				return -1;
+			}
+			//현재 노드의 item보다 
+			//insert하려는 item이 더 작은 경우
+			else 
+			{ 
+				cur = cur -> next;
+				curindex = curindex +1 ;
+			}
+		}
+		insertNode(ll, curindex, item);
+		return curindex;
+	}
+
+	// int curindex;
+	// curindex =0;
+
+	// ListNode *temp;
+	// temp = ll -> head; //연결 리스트의 헤드
+
+	// //새로운 노드 동적 할당 
+	// ListNode *newNode = malloc(sizeof(ListNode));
+
+	// if (ll==NULL || newNode == NULL) 	
+	// 	return -1; 
+	// else {
+	// 	newNode -> item = item;
+	// 	newNode -> next = NULL;
+		
+	// 	while (temp != NULL &&  temp-> item <= item) {
+	// 		temp = temp->next;
+	// 	}
+
+	// 	//이미 값이 존재하는 경우 
+	// 	if (temp != NULL && temp->item == item) {
+	// 		free(newNode);
+	// 		return -1;
+	// 	}
+
+
+
+	// 	//연결리스트의 크기 증가 
+	// 	ll->size ++;
+	// 	return ll->size -1;
+	// }
+}
 ///////////////////////////////////////////////////////////////////////////////////
 
 void printList(LinkedList *ll){

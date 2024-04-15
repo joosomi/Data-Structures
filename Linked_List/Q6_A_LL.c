@@ -86,9 +86,58 @@ int main()
 
 ////////////////////////////////////////////////////////////////////////
 
+// LinkedList의 최댓값을 가지는 노드는 맨 앞으로 보내기 
+// 30 20 40 70 50 -> 70 30 20 40 50  
+
+// 최댓값을 갖는 이전 노드 maxNode 
+// moveMaxToFront(&(ll.head));
+
+
 int moveMaxToFront(ListNode **ptrHead)
 {
-    /* add your code here */
+	//최댓값을 갖는 이전 노드를 가리키는 포인터 
+	ListNode  *maxNodePrev;
+	maxNodePrev = NULL;
+
+	ListNode *temp;
+	temp = *ptrHead; 
+
+	ListNode *maxNode; 
+	maxNode = *ptrHead;
+	
+	if ((*ptrHead) == NULL || (*ptrHead)->next == NULL ) 
+	{
+		return ;
+	}
+	// 다음 노드에 값이 있는 경우
+	while(temp->next != NULL) {
+		//다음 노드의 item이 
+		//최뎃값을 담은 리스트의 item 보다 크다면
+		//최댓값 갱신 
+		if (temp->next->item > maxNode->item) {
+			maxNodePrev = temp;
+
+			maxNode = temp -> next;
+			// maxNode -> item = temp->next->item;
+			// printf("maxNode-> item: %d\n", maxNode->item);
+		}
+		// prev = temp;
+		temp = temp->next; 
+	}
+
+	//최댓값을 가지는 이전 노드 maxNodePrev가 NULL이 아니라면
+	//노드를 맨 앞으로 이동	
+	if (maxNodePrev != NULL) {
+		//최댓값 이전 노드와 다음 노드 서로 연결 
+		maxNodePrev -> next = maxNode -> next;
+		//최댓값 노드 맨 앞으로 이동 ll-> head 
+		maxNode -> next = *ptrHead;
+		*ptrHead = maxNode;
+		
+		printf("maxNode-> item: %d\n", maxNode->item);
+		printf("temp-> item: %d\n", temp->item);
+	}
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////

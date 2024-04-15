@@ -100,10 +100,40 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+// 두번째 연결 리스트에 있는 노드들 삽입 -> alternate positions of the first list 
+// the nodes of the second list should only be inserted 
+// when there are alternate positions available in the first list 
 
 void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
-{
-    /* add your code here */
+{	
+	//삽입할 인덱스 
+	int idx = 1 ;
+
+	ListNode *ptrNode1; 
+	ListNode *ptrNode2; 
+	
+	//ll1의 첫번째 포인터 ptrNode1 
+	//ll2의 첫번째 포인터 ptrNode2 
+	ptrNode1 = ll1->head;
+	ptrNode2 = ll2->head; 
+
+	//ll2->head에 값이 있을 동안
+	while(ptrNode2 != NULL) {
+
+		//LL1의 값이 없는 경우
+		if (findNode(ll1, idx-1) == NULL) 
+			break;
+		
+		// ll1의 Node의 idx에 ptrNode2의 item insert;
+	 	insertNode(ll1, idx, ptrNode2->item);
+		
+		// printf("%d\n", ptrNode2->item);
+
+		//삽입했으니 다음 노드로 이동
+		ptrNode2 = ptrNode2->next;
+		removeNode(ll2, 0);
+		idx +=2;
+	}	
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
