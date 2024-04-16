@@ -116,6 +116,7 @@ void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, Linke
 	// } else {
 	// 	idx = ll-> size + 1; 
 	// }
+
 	ListNode *cur;
 	cur = ll-> head ;
 

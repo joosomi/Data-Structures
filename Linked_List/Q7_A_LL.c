@@ -86,15 +86,14 @@ int main()
 ////////////////////////////////////////////////////////////////////////
 // 모든 노드들의 값을 새로운 LinkedList 에 담고 연결하기
 //  1 2 3 4 5 -> 5 4 3 2 1 
-
+// 재귀로 깊이를 가면서 NULL을 만나면 마지막 노드 - stop 
 
 void RecursiveReverse(ListNode **ptrHead)
 {
-	// printList(*ptrHead); // 2 3 4 5 
 	ListNode *cur;
 	cur = *ptrHead;
 
-	//현재 노드의 다음 노드 nextNode
+	//현재 노드의 다음 노드 rest
 	ListNode *rest;
 	rest = cur -> next; 
 
@@ -108,42 +107,12 @@ void RecursiveReverse(ListNode **ptrHead)
 	
 	RecursiveReverse(&rest);
 	// printf("cur -> next-> next : %d\n", cur->next->next-> item); 
+	
+	//3 -> 4 -> 3 
 	cur-> next -> next = cur;
+
 	cur-> next = NULL;
 	*ptrHead = rest;
-
-	// first -> next -> next = cur;
-	// first -> next = NULL; 
-
-	// *ptrHead = cur ;
-
-	// //처음 시작  노드
-	// ListNode *first;
-	// first = *ptrHead; 
-
-	// // 합칠 노드 
-	// ListNode *rest;
-	// rest = NULL;	
-
-	// //cursor (첫번쨰 노드 -> 마지막 노드까지 이동할 cursor)
-	// ListNode *cur;
-	// cur = *ptrHead ; 
-
-	// if ((*ptrHead) == NULL || (*ptrHead)-> next == NULL ) {
-	// 	return ;
-	// }	
-
-	// int idx;
-	// idx = 0;
-
-	// while(cur != NULL) {
-	// 	ListNode *nextNode = cur->next ;
-	// 	first = cur;
-	// 	first = cur -> next;
-
-	// 	rest = first ; 
-
-	// 	for (idx = 0; idx < *ptrHead->size ; i++) {
 }
 
 //////////////////////////////////////////////////////////////////////////////////
