@@ -100,9 +100,49 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
+
+// int min_value(int a, int b, int c ){
+//     int min = a;
+//     if (b < min) {
+//         min = b;
+//     }
+//     if (c < min) {
+//         min = c;
+//     }
+
+//     return min;
+// }
+
+//최솟값 출력 
 int smallestValue(BTNode *node)
 {
-	/* add your code here */
+
+    //return 0이 아니라 
+    // __INT_MAX__로 설정한다.
+    if (node == NULL) {
+        return __INT_MAX__;
+    }
+
+    int minValue;
+    minValue = node-> item;
+
+    int leftMinValue = smallestValue(node->left);
+    int rightMinValue = smallestValue(node->right);
+
+    if (leftMinValue < minValue && leftMinValue < rightMinValue ) {
+        return leftMinValue;
+    } 
+    else if (rightMinValue < minValue && rightMinValue < leftMinValue ) {
+        return rightMinValue;
+    }
+
+    return minValue;
+
+    // minValue = min_value(node->item, node->left, node->right);
+
+    // smallestValue(node->left);
+    // smallestValue(node->right);
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////

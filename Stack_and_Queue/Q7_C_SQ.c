@@ -8,6 +8,7 @@ Purpose: Implementing the required functions for Question 7 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h> 
 
 #define MIN_INT -1000
 
@@ -102,10 +103,83 @@ int main()
 }
 
 ////////////////////////////////////////////////////////////
-int balanced(char *expression)
-{
-/* add your code here */
+
+// () {} [] balanced된 것인지 아닌지 판단하는 함수
+// // balanced => return 1; else => return 0;
+
+// int isMatchingPair(char left, char right) {
+// 	if ((left == '(' && right != ')') ||
+//         (left == '{' && right != '}') ||
+//         (left == '[' && right != ']')) {
+//         return 0;
+//     }
+// }
+
+int balanced(char *expression) {
+	Stack newStack;
+	newStack.ll.size = 0;
+	newStack.ll.head = NULL; 
+
+	// int length = strlen(expression);
+
+	while (*expression ) {
+		char cur = *expression;
+		printf("%c\n", cur);
+		
+		//여는 괄호인 경우
+		if (cur == '(' || cur == '[' || cur == '{') {
+			push(&newStack, cur);
+		}
+		
+		//닫는 괄호인 경우
+		 else {
+			//cur이 닫는 괄호인데 
+			
+			if (isEmptyStack(&newStack)) {
+				return 1;
+			}
+
+			char stack_pop = pop(&newStack);
+
+			printf("stack_pop: %c\n", stack_pop);
+			
+			if (
+				(cur == ')' && stack_pop != '(') ||
+				(cur == '}' && stack_pop != '{') ||
+				(cur == ']' && stack_pop != '[')) 
+			{
+				return 1;
+			}
+ 		}
+		expression++ ;	
+
+	}
+	// 스택이 비어있다면 balanced 
+	// 스택이 비어있지 않다면 unbalanced
+	if (isEmptyStack(&newStack)) {
+		return 0;
+	} else {
+		return 1;
+	}
 }
+
+	// for (int i =0; i <length ; i++) {
+	// 	if (expression[i] == '(' || expression[i]=='[' || expression[i]== '{') {
+	// 		push(&newStack, expression[i]);
+	// 	}
+
+	// 	else {
+	// 		if (isEmptyStack(&newStack)) {
+	// 			return 0;
+	// 		}
+
+	// 		char stack_pop = pop(&newStack);
+	// 		//닫는 괄호 - expression[i], stack_pop => 여는 괄호가 아니면
+	// 		if (!isMatchingPair(expression[i], stack_pop)) {
+	// 			return 0;
+	// 		}
+	// 	}
+
 
 ////////////////////////////////////////////////////////////
 

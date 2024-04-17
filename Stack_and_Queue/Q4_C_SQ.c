@@ -109,10 +109,30 @@ int main()
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// queue (1, 2, 3 ,4 5) 
+//=> resultiing queue => (5, 4, ,3, 2, 1)
 
 void reverse(Queue *q)
-{
+{	
+	// if (isEmptyQueue(q)) {
+	// 	removeAllItems(q);
+	// }
 
+	Stack newStack; 
+	newStack.ll.head = NULL;
+	newStack.ll.size = 0;
+
+	while(!isEmptyQueue(q)) {
+		int a ;
+		a = dequeue(q);
+		push(&newStack, a);
+	}
+
+	while (!isEmptyStack(&newStack)) {
+		int b;
+		b= pop(&newStack);
+		enqueue(q, b);
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

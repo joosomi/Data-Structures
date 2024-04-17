@@ -106,10 +106,19 @@ int main()
 }
 
 ////////////////////////////////////////////////////////////
-
+//재귀적으로 역순으로 정렬
+// (1, 2, 3, 4, 5) => (5, 4, 3, 2, 1)
 void recursiveReverse(Queue *q)
 {
-/* add your code here */
+	int temp;
+	if (q-> ll.head == NULL) {
+		return;
+	}
+	temp = dequeue(q);
+
+	recursiveReverse(q);
+
+	enqueue(q, temp);
 }
 
 //////////////////////////////////////////////////////////////////

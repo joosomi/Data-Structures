@@ -97,11 +97,27 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+//
+// 자식이 1개인 노드의 개수 출력
 
 int countOneChildNodes(BTNode *node)
-
 {
-    /* add your code here */
+    if (node == NULL) {
+        return 0;
+    }
+
+    // int cnt;
+    // cnt = 0;
+
+    if (node->left != NULL && node->right == NULL ) {
+        return countOneChildNodes(node->left) +1;
+    }
+    else if (node->right != NULL && node->left == NULL ) {
+        return countOneChildNodes(node->right) +1;
+    }
+    else {
+        return countOneChildNodes(node->left) + countOneChildNodes(node->right);
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

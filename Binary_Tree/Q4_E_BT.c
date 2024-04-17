@@ -99,12 +99,38 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+//홀수 노드들의 합을 출력하라.
 
 int sumOfOddNodes(BTNode *node)
-
 {
-    /* add your code here */
-}
+    if (node == NULL) {
+        return 0;
+    }
+
+    int cnt= 0;
+
+    //홀수 노드라면 node의 item 더한다.
+    if (node->item % 2 != 0) {
+        cnt += node->item;
+    }
+
+    cnt += sumOfOddNodes(node->left);
+    cnt += sumOfOddNodes(node->right);
+
+    return cnt;
+
+    
+    // if (node->left != NULL && node->right == NULL) {
+
+    //     return sumOfOddNodes(node->left);
+    // } 
+    // else if (node->right != NULL && node->left == NULL) {
+    //     return sumOfOddNodes(node->right);
+    // }
+    // else {
+    //     return sumOfOddNodes(node->left) + sumOfOddNodes(node->right);
+    // }
+}    
 
 //////////////////////////////////////////////////////////////////////////////////
 

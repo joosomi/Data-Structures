@@ -99,10 +99,56 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+// great grand child가 있는지 여부를 판단하는 함수
+// depth of the node가 >= 3이면
+// 그 노드의 item을 출력한다.
+//
+
+
+//함수의 가장 깊은 height를 구하는 함수 
+int maxHeight(BTNode *node)
+{
+    if (node == NULL) {
+        return -1;
+    }
+
+    int leftHeight;
+    leftHeight = maxHeight(node->left);
+    int rightHeight; 
+    rightHeight = maxHeight(node->right);
+
+    if (leftHeight >= rightHeight) {
+        return leftHeight + 1 ;
+    } else {
+        return rightHeight + 1 ;
+    }
+}
+
+
 
 int hasGreatGrandchild(BTNode *node)
 {
-	/* add your code here */
+	
+    if (node == NULL) {
+        return 0;
+    }
+
+    int depth;
+    depth = maxHeight(node);
+
+    if (depth >= 3) {
+        printf("%d ", node->item);
+    }
+
+    // hasGreatGrandchild(node->left);
+    // hasGreatGrandchild(node->right);
+
+    // if (node -> left && node-> right) {
+    //     if (maxHeight(node->item) >= 3) {
+    //         return node-> item;
+    //     }
+    // }
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////

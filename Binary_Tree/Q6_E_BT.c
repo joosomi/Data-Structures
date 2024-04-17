@@ -103,9 +103,47 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
+//value보다 작은 값들 출력하기
+
 void printSmallerValues(BTNode *node, int m)
 {
-	/* add your code here */
+    if (node == NULL) {
+        return 0;
+    }
+    
+
+    if (node-> item < m) {
+        printf("%d ", node->item);
+    }
+
+    printSmallerValues(node->left, m);
+    printSmallerValues(node->right, m);
+
+
+    // Stack newStack;
+
+    // // BTNode *temp; 
+
+    // if (node->left == NULL && node->right != NULL) {
+    //     if (node->right ->item < m) {
+    //         push(&newStack, node->right->item);
+    //     }
+    // } else if (node-> right == NULL && node-> left != NULL) {
+    //     if (node->left-> item < m) {
+    //         push(&newStack, node->left-> item);
+    //     }
+    //  } else {
+    //     if (node->right-> item <m) {
+    //         push(&newStack, node-> right-> item);
+    //     }
+    //     if (node-> left -> item <m) {
+    //         push(&newStack, node->left-> item);
+    //     }
+        
+    //  }
+     
+    //  return newStack;
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////

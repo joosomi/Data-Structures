@@ -84,9 +84,44 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
+
+
+// void moveOddItemsToBack(LinkedList *ll) {
+
+
+// 	if (ll= NULL) {
+// 		return;
+// 	}
+
+// 	ListNode *cur = ll->head;
+// 	ListNode *nextNode;
+// 	nextNode = NULL;
+
+// 	int idx = 0;
+
+// 	// while (cur != NULL) {
+// 	for (int i =0; i <ll->size; i++) {
+// 		if (cur->item % 2 != 0) {
+// 			nextNode = cur -> next;
+			
+			
+// 			insertNode(ll, ll->size, cur->item);
+// 			removeNode(ll, idx);
+
+// 			cur = nextNode;
+
+// 		}
+// 		idx++;
+// 		cur = cur -> next;
+// 	}
+// 	return;
+// }
+
+
 // linkedlist에서 
 // 홀수는 맨 뒤로 보내기
 // evenTail -> oddHead -> oddTail 
+
 
 void moveOddItemsToBack(LinkedList *ll)
 {

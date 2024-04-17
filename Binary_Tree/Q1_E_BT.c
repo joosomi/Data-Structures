@@ -113,10 +113,27 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
+// 2개의 트리가 동일한 트리인지 판단 
 int identical(BTNode *tree1, BTNode *tree2)
 
 {
-   /* add your code here */
+    if (tree1 == NULL && tree2 == NULL) {
+        return 1;
+    }
+
+    if (tree1 == NULL || tree2 == NULL) {
+        return 0;
+    }
+
+    if (tree1->item != tree2->item) {
+        return 0;
+    }
+
+    if ((identical(tree1->left, tree2->left)) && (identical(tree1->right, tree2-> right))) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////

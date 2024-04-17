@@ -91,10 +91,45 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
+// typedef struct _bstnode{
+// 	int item;
+// 	struct _bstnode *left;
+// 	struct _bstnode *right;
+// } BSTNode;   // You should not change the definition of BSTNode
+
+//level별로 노드 출력 
 void levelOrderTraversal(BSTNode* root)
 {
+	if (root == NULL) {
+		return;
+	}
+	
+	Queue *queue;
+	queue = malloc(sizeof(Queue));
 
-    /* add your code here */
+	if (queue == NULL) {
+		return;
+	}
+
+	queue -> head = NULL;
+	queue-> tail = NULL;
+
+	enqueue(&queue->head, &queue->tail, root);
+
+	while (!isEmpty(queue-> head)) {
+		BSTNode *deq = dequeue(&queue-> head, &queue->tail);
+		printf("%d ", deq->item);
+
+		if (deq->left != NULL) {
+			enqueue(&queue -> head, &queue->tail, deq->left );
+		}
+
+		if (deq->right != NULL) {
+			enqueue(&queue->head, &queue->tail, deq->right);
+		}
+	}
+
+	free(queue);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

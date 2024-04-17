@@ -93,11 +93,24 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-
+//트리 -> 루트 노드에서 leaf node까지 
+// 가장 깊은 the deepest leaf node 의 깊이는 얼마인지 출력
 int maxHeight(BTNode *node)
-
 {
-    /* add your code here */
+    if (node == NULL) {
+        return -1;
+    }
+
+    int leftHeight;
+    leftHeight = maxHeight(node->left);
+    int rightHeight; 
+    rightHeight = maxHeight(node->right);
+
+    if (leftHeight >= rightHeight) {
+        return leftHeight + 1 ;
+    } else {
+        return rightHeight + 1 ;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
