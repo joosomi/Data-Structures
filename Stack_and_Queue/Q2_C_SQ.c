@@ -114,7 +114,7 @@ int main()
 void createStackFromLinkedList(LinkedList *ll, Stack *s)
 {
 	//스택이 비어있지 않다면 비우고 시작 
-	if (isEmptyStack(s)) {
+	if (!isEmptyStack(s)) {
 		removeAllItemsFromStack(s);
 	}
 

@@ -83,44 +83,79 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-
-
 void moveOddItemsToBack(LinkedList *ll) {
 
-	if (ll==  NULL) {
+	if (ll == NULL) {
 		return;
 	}
 
 	ListNode *cur = ll->head;
-	ListNode *prev; 
-	prev = NULL;
+	int cnt;
+	cnt = ll->size;
+	int max_count = ll->size; 
 
-	while (cur!= NULL && cur->next != NULL) {
-		//현재 노드의 값이 홀수, 다음 노드의 값이 짝수인지 확인
-		if (cur->item % 2 != 0 && cur->next ->item % 2 ==0) {
-			// 이전 노드의 다음 노드를 현재 노드의 다음 노드와 연결
-			//현재 노드의 다음 노드를 cur->next->next로 설정하여 현재 노드를 제거
-			// 이전 노드의 다음 노드를 이동된 
-			if (prev != NULL) {
-				prev -> next = cur ->next;
-				cur -> next = cur->next->next;
-				prev->next -> next = cur;
-			}
-			else {
-				ll->head = cur -> next;
-				cur->next = cur->next->next;
-				ll->head->next = cur;
-			}
 
-			cur = ll->head;
-			prev = NULL;
-			continue;
+	for (int i =0; i < cnt; i++) {
+		//현재의 아이템이 홀수인가? 
+		if (cur-> item %2 != 0) {
+			insertNode(ll,  max_count, cur->item);
+			cur = cur -> next; 
+			removeNode(ll, i);
 		}
 
-		prev = cur;
-		cur = cur -> next; 
+
+		printf("cnt: %d", cnt);
+		printf("i: %d ", i);
+		cnt --;
+		i--;
+		// printf("cnt: %d", cnt);
+		// printf("i: %d ", i);
+	}
+	else {
+		cur = cur -> next;
 	}
 }
+
+
+
+
+
+// void moveOddItemsToBack(LinkedList *ll) {
+
+// 	if (ll==  NULL) {
+// 		return;
+// 	}
+
+// 	ListNode *cur = ll->head;
+// 	ListNode *prev; 
+// 	prev = NULL;
+
+// 	while (cur!= NULL && cur->next != NULL) {
+// 		//현재 노드의 값이 홀수, 다음 노드의 값이 짝수인지 확인
+// 		if (cur->item % 2 != 0 && cur->next ->item % 2 ==0) {
+// 			// 이전 노드의 다음 노드를 현재 노드의 다음 노드와 연결
+// 			//현재 노드의 다음 노드를 cur->next->next로 설정하여 현재 노드를 제거
+// 			// 이전 노드의 다음 노드를 이동된 
+// 			if (prev != NULL) {
+// 				prev -> next = cur ->next;
+// 				cur -> next = cur->next->next;
+// 				prev->next -> next = cur;
+// 			}
+// 			else {
+// 				ll->head = cur -> next;
+// 				cur->next = cur->next->next;
+// 				ll->head->next = cur;
+// 			}
+
+// 			cur = ll->head;
+// 			prev = NULL;
+// 			continue;
+// 		}
+
+// 		prev = cur;
+// 		cur = cur -> next; 
+// 	}
+// }
 
 // linkedlist에서 
 // 홀수는 맨 뒤로 보내기

@@ -87,11 +87,11 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-// 중위 순회: 왼쪽 서브트리 -> 루트 노드 방문 -> 오른쪽 서브 트리
+
 // only use push() or pop()
 // a stack 사용
 
-
+// 중위 순회: 왼쪽 서브트리 -> 루트 노드 방문 -> 오른쪽 서브 트리
 void inOrderTraversal(BSTNode *root) 
 {
 	if (root == NULL) {
@@ -100,7 +100,7 @@ void inOrderTraversal(BSTNode *root)
 
 //	newStack 동적 할당 
 	Stack *newStack;	
-	newStack = malloc(sizeof(newStack));
+	newStack = malloc(sizeof(Stack));
 
 	if (newStack == NULL) {
 		return;
@@ -108,17 +108,20 @@ void inOrderTraversal(BSTNode *root)
 	//newStack 초기화
 	newStack -> top = NULL;
 
+	//루트 노드를 가리키는 cur 포인터 
 	BSTNode *cur = root;
 
+//현재 노드가 NULL이 아니거나 스택이 비어있지 않은 동안 반복한다.
 	while (!isEmpty(newStack) || cur != NULL) {
 		while(cur != NULL) {
-			push(&newStack, cur);
+			
+			push(newStack, cur);
 			cur = cur -> left;
 
 			// printf("%d ", cur->item);
 		}
 
-		cur = pop(&newStack);
+		cur = pop(newStack);
 
 		printf("%d ", cur->item);
 

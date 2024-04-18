@@ -93,88 +93,60 @@ int main()
 
 //Peek -> 스택의 맨 위 요소에 접근하여 해당 요소의 데이터를 반환
 
+
 void postOrderIterativeS1(BSTNode *root)
 {
-	// if (root == NULL) {
-	// 	return;
-	// }
-	// Stack *newStack;
-	// newStack = malloc(sizeof(newStack));
-	// if (newStack == NULL) {
-	// 	return;
-	// }
-	// newStack -> top = NULL;
-	// BSTNode *cur = root ;
+
+	if (root == NULL) {
+		return;
+	}
+
+	Stack newStack;
+	newStack.top = NULL;
+	BSTNode *cur = root;
+
+
+	//root 노도 -> 오른쪽 자식 -> 왼쪽 자식 순서로 stack에 Push
+	//왼쪽 자식을 먼저 처리하기 위해 ! 
+	push(&newStack, cur);
+	push(&newStack, cur->right);
+	push(&newStack, cur->left); 
+
+	while (!isEmpty(&newStack)) {
+
+		cur = pop(&newStack);
+
+		//해당 값이 루트 노드인 경우 해당 값을 출력하고 종료 
+		if (cur == root) {
+			printf("%d ", cur->item);
+			break ;
+		}
 	
+		//스택의 맨 위의 값과 cur의 아이템이 같다면
+		if (peek(&newStack) -> item == cur-> item) {
+			printf("%d ", cur->item);
+			pop(&newStack);
+			continue;
+		}
 
-	// 	while (cur != NULL || !isEmpty(&newStack)) {
-	// 		if (cur != NULL) {
-	// 			push(&newStack, cur);
-	// 			cur = cur -> left;
-	// 		}		
-		
-			
-	// 		}
-	
-	// free(newStack);
-}	
-			// push(&newStack, cur);
-			
-			// if (cur-> right != NULL) {
-			// 	push(&newStack, cur -> right);
-			// }
+		//방문을 추적하기 위해 현재 노드를 스택에 2번 넣는다.
+		//왼쪽이나 오른쪽 자식 노드가 있다면
+		//자기 노드를 push 
+		if (cur->left || cur -> right) {
+			push(&newStack, cur);
+			push(&newStack, cur);
+			if (cur-> right) {
+				push(&newStack, cur->right);
+			}
+			if (cur->left) {
+				push(&newStack, cur->left);
+			}
+		} else {
+			printf("%d ", cur->item);
+		}
+	}
+}
 
-			// if (cur -> left != NULL) {
-			// 	push(&newStack, cur -> left);
-			// }
-
-			// cur = cur -> left;
-
-			// printf("%d ", cur -> item);
-
-
-// if (root == NULL ) {
-// 		return ; 
-// 	}
-
-// 	Stack *newStack;
-// 	newStack = malloc(sizeof(newStack));
-
-// 	if (newStack == NULL) {
-// 		return;
-// 	}
-
-// 	newStack -> top = NULL;
-
-// 	BSTNode *cur = root;
-	
-// 	push(&newStack, cur);
-
-// 	while (!isEmpty(newStack) ) {
-// 		BSTNode *node = pop(newStack);
-
-// 		if (node != NULL) {
-// 			push(&newStack, node);
-
-// 			if (node -> right != NULL) {
-// 				push(&newStack, node-> right);
-// 			}
-
-// 			if (node -> left != NULL) {
-// 				push(&newStack, node->left);
-// 			}
-// 		} else {
-// 			BSTNode *temp = pop(newStack);
-// 			printf("%d ", temp-> item);
-// 			free(temp);
-// 		}
-// 	}
-
-// 	free(newStack);
-
-	
-	
-// }
 
 ///////////////////////////////////////////////////////////////////////////////
 

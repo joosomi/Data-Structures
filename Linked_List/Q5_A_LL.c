@@ -108,85 +108,69 @@ int main()
 	// size가 홀수인 경우
 	// front List에 extra 추가해야 함
 	
-void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
-{	
+// void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
+// {	
 	
-	// if (ll->size % 2 == 0) {
-	// 	idx = ll-> size;
-	// } else {
-	// 	idx = ll-> size + 1; 
-	// }
+// 	// if (ll->size % 2 == 0) {
+// 	// 	idx = ll-> size;
+// 	// } else {
+// 	// 	idx = ll-> size + 1; 
+// 	// }
 
-	ListNode *cur;
-	cur = ll-> head ;
+// 	ListNode *cur;
+// 	cur = ll-> head ;
 
-	//Front 포인터 - 분할 기준 노드의 시작
-	ListNode *front = ll->head;
-	//Back 포인터 - 분할 위해 2단계씩 이동
-	ListNode *back = ll->head; 
-	//이전 노드를 가리키는 포인터 prev
-	ListNode *prev ;
+// 	//Front 포인터 - 분할 기준 노드의 시작
+// 	ListNode *front = ll->head;
+// 	//Back 포인터 - 분할 위해 2단계씩 이동
+// 	ListNode *back = ll->head; 
+// 	//이전 노드를 가리키는 포인터 prev
+// 	ListNode *prev ;
 
-	while (back != NULL && back -> next != NULL) {
-		prev = front; 
-		front = front->next;
-		back = back->next->next;
-		// printf("front: %d\n", front->item );
-		// printf("back: %d\n", back-> item);
+// 	while (back != NULL && back -> next != NULL) {
+// 		prev = front; 
+// 		front = front->next;
+// 		back = back->next->next;
+// 		// printf("front: %d\n", front->item );
+// 		// printf("back: %d\n", back-> item);
+// 	}
+
+// 	//이전 노드가 NULL 이 아닌 경우 
+// 	//연결 리스트에 노드가 1개 이상 있는 경우
+// 	if (prev != NULL) {
+// 		//만약 back이 null이 아니면 
+// 		// LL 노드 개수가 홀수라면  
+// 		if (back != NULL) {
+// 			resultBackList -> head = front -> next;
+// 			prev -> next -> next = NULL;
+// 			resultFrontList->head = ll->head ;
+// 		} 
+// 		//만약 back이 null이면 
+// 		// LL 노드 개수가 짝수라면
+// 		else 
+// 		{
+// 			prev -> next = NULL;
+// 			resultFrontList->head = ll->head;
+// 			resultBackList->head = front;
+// 		}
+// 	}
+// }
+	
+void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList) {
+	ListNode *newNode = ll->head;
+	int maxcount = ll->size;
+	int cnt = (ll->size + 1) / 2;
+
+	for (int i = 0; i <cnt; i++) {
+		insertNode(resultFrontList, newNode->item);
+		newNode = newNode->next;
 	}
 
-	//이전 노드가 NULL 이 아닌 경우 
-	//연결 리스트에 노드가 1개 이상 있는 경우
-	if (prev != NULL) {
-		//만약 back이 null이 아니면 
-		// LL 노드 개수가 홀수라면  
-		if (back != NULL) {
-			resultBackList -> head = front -> next;
-			prev -> next -> next = NULL;
-			resultFrontList->head = ll->head ;
-		} 
-		//만약 back이 null이면 
-		// LL 노드 개수가 짝수라면
-		else 
-		{
-			prev -> next = NULL;
-			resultFrontList->head = ll->head;
-			resultBackList->head = front;
-		}
+	for (int i =0; i < maxcount -cnt; i++) {
+		insertNode(resultBackList, i, newNode->item);
+		newNode = newNode -> next;
 	}
 }
-	
-	// ListNode *prev = NULL;  //이전 노드 
-
-	// if (ll == NULL)
-	// 	return ;
-
-	// while (front!= NULL ) {
-	// 	front = front -> next; 
-
-	// 	if (front != NULL) {
-	// 		back = back->next;
-	// 		front = front -> next -> next;
-	// 	}
-
-	// 	printf("%d\n", front->item);
-	// 	printf("%d\n", back->item);
-	// 	printf("%d\n", cur->item);
-	// }
-
-	// 앞 노드가 NULL이 아니라면 
-	// while (prev != NULL) {
-	// 	prev = front;
-		 
-	// 	back = back-> next ;
-	// 	front = front -> next ; 
-	// }
-
-	// if (prev != NULL) {
-	// 	prev->next = NULL;
-	// }
-	// front = ll-> head;
-	// back = back;
 
 ///////////////////////////////////////////////////////////////////////////////////
 

@@ -97,7 +97,7 @@ void preOrderIterative(BSTNode *root)
 	}
 
 	Stack *newStack;
-	newStack= malloc(sizeof(newStack));
+	newStack= malloc(sizeof(Stack));
 
 	if (newStack == NULL) {
 		return ;
@@ -109,12 +109,12 @@ void preOrderIterative(BSTNode *root)
 
 	while (!isEmpty(newStack) || cur != NULL ) {
 		while (cur!= NULL){
-			push(&newStack, cur);
+			push(newStack, cur);
 			printf("%d ", cur -> item);
 			cur = cur -> left;
 		}
 
-		cur = pop(&newStack);
+		cur = pop(newStack);
 
 		cur = cur -> right;
 	}
