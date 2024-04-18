@@ -88,10 +88,39 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+//전위 순회: 루트 노드 방문 -> 왼쪽 서브 트리 -> 오른쪽 서브 트리
 
 void preOrderIterative(BSTNode *root)
 {
-	 /* add your code here */
+	if (root == NULL) {
+		return;
+	}
+
+	Stack *newStack;
+	newStack= malloc(sizeof(newStack));
+
+	if (newStack == NULL) {
+		return ;
+	}
+
+	newStack -> top = NULL;
+
+	BSTNode *cur = root;
+
+	while (!isEmpty(newStack) || cur != NULL ) {
+		while (cur!= NULL){
+			push(&newStack, cur);
+			printf("%d ", cur -> item);
+			cur = cur -> left;
+		}
+
+		cur = pop(&newStack);
+
+		cur = cur -> right;
+	}
+
+	free(newStack);
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////

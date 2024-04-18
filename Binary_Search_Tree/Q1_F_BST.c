@@ -98,6 +98,7 @@ int main()
 // } BSTNode;   // You should not change the definition of BSTNode
 
 //level별로 노드 출력 
+// BFS 방식으로 출력
 void levelOrderTraversal(BSTNode* root)
 {
 	if (root == NULL) {
@@ -107,6 +108,7 @@ void levelOrderTraversal(BSTNode* root)
 	Queue *queue;
 	queue = malloc(sizeof(Queue));
 
+	//메모리 동적 할당 실패시 -> 함수 종료
 	if (queue == NULL) {
 		return;
 	}
@@ -114,16 +116,20 @@ void levelOrderTraversal(BSTNode* root)
 	queue -> head = NULL;
 	queue-> tail = NULL;
 
+	//큐에 루트노드 추가
 	enqueue(&queue->head, &queue->tail, root);
 
+	//큐가 비어있을 동안 반복
 	while (!isEmpty(queue-> head)) {
+		//큐에서 dequeue
 		BSTNode *deq = dequeue(&queue-> head, &queue->tail);
 		printf("%d ", deq->item);
 
+		//왼쪽 노드가 비어있지 않다면 -> enqueue(deq -> left)
 		if (deq->left != NULL) {
 			enqueue(&queue -> head, &queue->tail, deq->left );
 		}
-
+		//오른쪽 노드가 비어있지 않다면 -> enqueue(deq -> right)
 		if (deq->right != NULL) {
 			enqueue(&queue->head, &queue->tail, deq->right);
 		}

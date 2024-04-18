@@ -115,6 +115,9 @@ int main()
 //     }
 // }
 
+// 1- > not balanced
+// 0 -> balanced
+
 int balanced(char *expression) {
 	Stack newStack;
 	newStack.ll.size = 0;
@@ -127,6 +130,7 @@ int balanced(char *expression) {
 		printf("%c\n", cur);
 		
 		//여는 괄호인 경우
+		//stack에 push
 		if (cur == '(' || cur == '[' || cur == '{') {
 			push(&newStack, cur);
 		}
@@ -134,7 +138,7 @@ int balanced(char *expression) {
 		//닫는 괄호인 경우
 		 else {
 			//cur이 닫는 괄호인데 
-			
+			//스택이 비어있는 경우 -> not balanced
 			if (isEmptyStack(&newStack)) {
 				return 1;
 			}

@@ -85,111 +85,115 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 
+void moveOddItemsToBack(LinkedList *ll) {
 
-// void moveOddItemsToBack(LinkedList *ll) {
+	if (ll==  NULL) {
+		return;
+	}
 
+	ListNode *cur = ll->head;
+	ListNode *prev; 
+	prev = NULL;
 
-// 	if (ll= NULL) {
-// 		return;
-// 	}
+	while (cur!= NULL && cur->next != NULL) {
+		//현재 노드의 값이 홀수, 다음 노드의 값이 짝수인지 확인
+		if (cur->item % 2 != 0 && cur->next ->item % 2 ==0) {
+			// 이전 노드의 다음 노드를 현재 노드의 다음 노드와 연결
+			//현재 노드의 다음 노드를 cur->next->next로 설정하여 현재 노드를 제거
+			// 이전 노드의 다음 노드를 이동된 
+			if (prev != NULL) {
+				prev -> next = cur ->next;
+				cur -> next = cur->next->next;
+				prev->next -> next = cur;
+			}
+			else {
+				ll->head = cur -> next;
+				cur->next = cur->next->next;
+				ll->head->next = cur;
+			}
 
-// 	ListNode *cur = ll->head;
-// 	ListNode *nextNode;
-// 	nextNode = NULL;
+			cur = ll->head;
+			prev = NULL;
+			continue;
+		}
 
-// 	int idx = 0;
-
-// 	// while (cur != NULL) {
-// 	for (int i =0; i <ll->size; i++) {
-// 		if (cur->item % 2 != 0) {
-// 			nextNode = cur -> next;
-			
-			
-// 			insertNode(ll, ll->size, cur->item);
-// 			removeNode(ll, idx);
-
-// 			cur = nextNode;
-
-// 		}
-// 		idx++;
-// 		cur = cur -> next;
-// 	}
-// 	return;
-// }
-
+		prev = cur;
+		cur = cur -> next; 
+	}
+}
 
 // linkedlist에서 
 // 홀수는 맨 뒤로 보내기
 // evenTail -> oddHead -> oddTail 
 
 
-void moveOddItemsToBack(LinkedList *ll)
-{
-	ListNode *cur = ll->head;
-    ListNode *prev = NULL;
+// void moveOddItemsToBack(LinkedList *ll)
+// {
+// 	ListNode *cur = ll->head;
+//     ListNode *prev = NULL;
 
-	 if (ll == NULL) {
-        return; 
-    }
+// 	 if (ll == NULL) {
+//         return; 
+//     }
 
-	// 홀수 값을 가진 노드들의 연결 리스트 head
-    ListNode *oddHead = NULL; 
-	// 홀수 값을 가진 노드들의 연결 리스트 tail 
-    ListNode *oddTail = NULL; 
-	// 짝수 값을 가진 노드들 중 가장 마지막 노드를 가리키는 포인터 
-    ListNode *evenTail = NULL; 
+// 	// 홀수 값을 가진 노드들의 연결 리스트 head
+//     ListNode *oddHead = NULL; 
+// 	// 홀수 값을 가진 노드들의 연결 리스트 tail 
+//     ListNode *oddTail = NULL; 
+// 	// 짝수 값을 가진 노드들 중 가장 마지막 노드를 가리키는 포인터 
+//     ListNode *evenTail = NULL; 
 
-    while (cur != NULL) {
-		// 다음 노드를 가리키는 포인터 nextNode 
-    	ListNode *nextNode = cur->next;
+//     while (cur != NULL) {
+// 		// 다음 노드를 가리키는 포인터 nextNode 
+//     	ListNode *nextNode = cur->next;
 
-		// 현재 노드의 item이 홀수인 경우
-        if (cur->item % 2 != 0) {
+// 		// 현재 노드의 item이 홀수인 경우
+//         if (cur->item % 2 != 0) {
 
-			//홀수 노드들의 연결 리스트들의 oddHead가 NULL이라면 
-            if (oddHead == NULL) {
-                oddHead = cur;
-                oddTail = cur;
-            } 
-			//oddhead가 NULL이 아니라면 -> 이미 홀수값이 나왔었더라면
-			//홀수 값을 가진 노드들 연결리스트의 꼬리의 next 가 cur
-			else {
-                oddTail-> next = cur;
-				oddTail = cur;
-            }
-			//홀수를 갖는 리스트의 next는 NULL; 
-            oddTail -> next = NULL;
+// 			//홀수 노드들의 연결 리스트들의 oddHead가 NULL이라면 
+//             if (oddHead == NULL) {
+//                 oddHead = cur;
+//                 oddTail = cur;
+//             } 
+// 			//oddhead가 NULL이 아니라면 -> 이미 홀수값이 나왔었더라면
+// 			//홀수 값을 가진 노드들 연결리스트의 꼬리의 next 가 cur
+// 			else {
+//                 oddTail-> next = cur;
+// 				oddTail = cur;
+//             }
+// 			//홀수를 갖는 리스트의 next는 NULL; 
+//             oddTail -> next = NULL;
 
-			// 이전 노드를 가리키는 prev가 
-			// NULL이 아니라면
-            if (prev != NULL) {
-                prev->next = nextNode;
-            } 
-			else {
-                ll->head = nextNode;
-            }
-        } 
-		// 현재 노드의 item이 짝수인 경우
-		else {
-            prev = cur;
-			//짝수 tail이 null 이거나 prev->item 이 짝수라면
-            if (evenTail == NULL || prev->item % 2 == 0) {
-                evenTail = prev;
-            }
-        }
-        cur = nextNode;
-    }
-    // 짝수 값을 가진 노드들의 끝에 홀수 노드들을 연결
-	//evenTail이 null이 아니라면 
-    if (evenTail != NULL) {
-        evenTail->next = oddHead;
-    } 
-	//evenTail의 값이 NULL이라면
-	//짝수 값이 없었던 경우
-	else {
-        ll->head = oddHead;
-    }
-}
+// 			// 이전 노드를 가리키는 prev가 
+// 			// NULL이 아니라면
+//             if (prev != NULL) {
+//                 prev->next = nextNode;
+//             } 
+// 			else {
+//                 ll->head = nextNode;
+//             }
+//         } 
+// 		// 현재 노드의 item이 짝수인 경우
+// 		else {
+//             prev = cur;
+// 			//짝수 tail이 null 이거나 prev->item 이 짝수라면
+//             if (evenTail == NULL || prev->item % 2 == 0) {
+//                 evenTail = prev;
+//             }
+//         }
+//         cur = nextNode;
+//     }
+//     // 짝수 값을 가진 노드들의 끝에 홀수 노드들을 연결
+// 	//evenTail이 null이 아니라면 
+//     if (evenTail != NULL) {
+//         evenTail->next = oddHead;
+//     } 
+// 	//evenTail의 값이 NULL이라면
+// 	//짝수 값이 없었던 경우
+// 	else {
+//         ll->head = oddHead;
+//     }
+// }
 ///////////////////////////////////////////////////////////////////////////////////
 
 void printList(LinkedList *ll){

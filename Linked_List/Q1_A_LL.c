@@ -108,13 +108,13 @@ int insertSortedLL(LinkedList *ll, int item)
 	curindex= 0;
 
 	ListNode *cur; 
-	cur = ll -> head;
+	cur = ll -> head; // cur => 연결 리스트의 head
 
 	if (ll==NULL) 
 		return -1;
 	else 
 	{
-		//현재의 item이 insert하려는 item보다 작거나 같은 경우
+		//현재 노드의 item이 insert하려는 item보다 작거나 같은 경우
 		while (cur != NULL && cur -> item <= item) {
 			//이미 값이 있는 경우 - 중복값인 경우
 			if (cur-> item == item) {
@@ -124,14 +124,17 @@ int insertSortedLL(LinkedList *ll, int item)
 			//insert하려는 item이 더 작은 경우
 			else 
 			{ 
+				//다음 노드로 이동, curindex 증가
 				cur = cur -> next;
 				curindex = curindex +1 ;
 			}
 		}
+		//앞의 노드들의 값이 insert하려는 정수의 값보다 작을 때까지 while문 돌다가
+		//멈춰서 해당 index에 정수 삽입 
 		insertNode(ll, curindex, item);
 		return curindex;
 	}
-
+}
 	// int curindex;
 	// curindex =0;
 
@@ -163,7 +166,7 @@ int insertSortedLL(LinkedList *ll, int item)
 	// 	ll->size ++;
 	// 	return ll->size -1;
 	// }
-}
+
 ///////////////////////////////////////////////////////////////////////////////////
 
 void printList(LinkedList *ll){

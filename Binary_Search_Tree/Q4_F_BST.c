@@ -88,11 +88,93 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+// 후위 순회 : 왼쪽 자식 -> 오른쪽 자식 -> 루트 노드;
+// 스택 1개 
+
+//Peek -> 스택의 맨 위 요소에 접근하여 해당 요소의 데이터를 반환
 
 void postOrderIterativeS1(BSTNode *root)
 {
-	 /* add your code here */
-}
+	// if (root == NULL) {
+	// 	return;
+	// }
+	// Stack *newStack;
+	// newStack = malloc(sizeof(newStack));
+	// if (newStack == NULL) {
+	// 	return;
+	// }
+	// newStack -> top = NULL;
+	// BSTNode *cur = root ;
+	
+
+	// 	while (cur != NULL || !isEmpty(&newStack)) {
+	// 		if (cur != NULL) {
+	// 			push(&newStack, cur);
+	// 			cur = cur -> left;
+	// 		}		
+		
+			
+	// 		}
+	
+	// free(newStack);
+}	
+			// push(&newStack, cur);
+			
+			// if (cur-> right != NULL) {
+			// 	push(&newStack, cur -> right);
+			// }
+
+			// if (cur -> left != NULL) {
+			// 	push(&newStack, cur -> left);
+			// }
+
+			// cur = cur -> left;
+
+			// printf("%d ", cur -> item);
+
+
+// if (root == NULL ) {
+// 		return ; 
+// 	}
+
+// 	Stack *newStack;
+// 	newStack = malloc(sizeof(newStack));
+
+// 	if (newStack == NULL) {
+// 		return;
+// 	}
+
+// 	newStack -> top = NULL;
+
+// 	BSTNode *cur = root;
+	
+// 	push(&newStack, cur);
+
+// 	while (!isEmpty(newStack) ) {
+// 		BSTNode *node = pop(newStack);
+
+// 		if (node != NULL) {
+// 			push(&newStack, node);
+
+// 			if (node -> right != NULL) {
+// 				push(&newStack, node-> right);
+// 			}
+
+// 			if (node -> left != NULL) {
+// 				push(&newStack, node->left);
+// 			}
+// 		} else {
+// 			BSTNode *temp = pop(newStack);
+// 			printf("%d ", temp-> item);
+// 			free(temp);
+// 		}
+// 	}
+
+// 	free(newStack);
+
+	
+	
+// }
 
 ///////////////////////////////////////////////////////////////////////////////
 

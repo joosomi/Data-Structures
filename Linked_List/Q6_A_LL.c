@@ -92,52 +92,56 @@ int main()
 // 최댓값을 갖는 이전 노드 maxNode 
 // moveMaxToFront(&(ll.head));
 
-
 int moveMaxToFront(ListNode **ptrHead)
 {
 	//최댓값을 갖는 이전 노드를 가리키는 포인터 
 	ListNode  *maxNodePrev;
 	maxNodePrev = NULL;
-
+	//연결리스트를 순회할 임시 포인터
 	ListNode *temp;
 	temp = *ptrHead; 
-
+	//최댓값을 가진 노드를 가리키는 포인터 
 	ListNode *maxNode; 
 	maxNode = *ptrHead;
 	
+	//빈 리스트이거나 하나의 노드만 존재하는 경우
+	//최댓값 찾을 필요 없음
 	if ((*ptrHead) == NULL || (*ptrHead)->next == NULL ) 
 	{
 		return ;
 	}
-	// 다음 노드에 값이 있는 경우
+
+	// 다음 노드에 값이 있을 때만
+	//temp 포인터를 활용 - 연결 리스트 순회
 	while(temp->next != NULL) {
+		
 		//다음 노드의 item이 
-		//최뎃값을 담은 리스트의 item 보다 크다면
+		//현재 최댓값 item 보다 크다면
+		
+		//최댓값을 가지는 이전 노드를 가리키는 maxNodePrev temp로 갱신 
 		//최댓값 갱신 
 		if (temp->next->item > maxNode->item) {
 			maxNodePrev = temp;
-
 			maxNode = temp -> next;
-			// maxNode -> item = temp->next->item;
-			// printf("maxNode-> item: %d\n", maxNode->item);
+			
 		}
-		// prev = temp;
+		//다음 노드로 이동
 		temp = temp->next; 
 	}
 
-	//최댓값을 가지는 이전 노드 maxNodePrev가 NULL이 아니라면
-	//노드를 맨 앞으로 이동	
+	//최댓값을 가지는 이전 노드 maxNodePrev가 NULL이 아닌 경우
+	//최댓값을 가진 노드를 맨 앞으로 이동
+
 	if (maxNodePrev != NULL) {
-		//최댓값 이전 노드와 다음 노드 서로 연결 
+		//최댓값 이전 노드와 최댓값 갖는 노드의 다음 노드 서로 연결 
 		maxNodePrev -> next = maxNode -> next;
-		//최댓값 노드 맨 앞으로 이동 ll-> head 
+		//maxNode의 next가 현재의 헤드가 되어야 함
+		//그리고 현재의 헤드를 maxNode로 갱신 - 최댓값을 맨 앞으로 이동시킨 결과가 나온다.
 		maxNode -> next = *ptrHead;
 		*ptrHead = maxNode;
 		
-		printf("maxNode-> item: %d\n", maxNode->item);
-		printf("temp-> item: %d\n", temp->item);
+	
 	}
-
 }
 
 //////////////////////////////////////////////////////////////////////////////////

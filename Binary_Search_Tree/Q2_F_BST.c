@@ -87,11 +87,87 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+// 중위 순회: 왼쪽 서브트리 -> 루트 노드 방문 -> 오른쪽 서브 트리
+// only use push() or pop()
+// a stack 사용
 
-void inOrderTraversal(BSTNode *root)
+
+void inOrderTraversal(BSTNode *root) 
 {
-	 /* add your code here */
+	if (root == NULL) {
+		return;
+	}
+
+//	newStack 동적 할당 
+	Stack *newStack;	
+	newStack = malloc(sizeof(newStack));
+
+	if (newStack == NULL) {
+		return;
+	}
+	//newStack 초기화
+	newStack -> top = NULL;
+
+	BSTNode *cur = root;
+
+	while (!isEmpty(newStack) || cur != NULL) {
+		while(cur != NULL) {
+			push(&newStack, cur);
+			cur = cur -> left;
+
+			// printf("%d ", cur->item);
+		}
+
+		cur = pop(&newStack);
+
+		printf("%d ", cur->item);
+
+		cur = cur -> right;
+	}
+
+	free(newStack);
+
 }
+
+
+
+// void inOrderTraversal(BSTNode *root)
+// {
+// 	if (root == NULL) {
+// 		return;
+// 	}
+
+// 	Stack *newStack;
+// 	newStack = malloc(sizeof(newStack));
+
+// 	//newStack 동적 할당 실패시 => 함수 종료
+// 	if (newStack == NULL ) {
+// 		return;
+// 	}
+
+// 	newStack -> top = NULL;
+
+// 	while(!isEmpty(newStack)) {
+// 		BSTNode *Node = pop(&newStack);
+// 		printf("%d ", Node->item);
+
+// 		if (root->right != NULL) {
+// 			push(&newStack, root ->right );
+// 		}
+
+// 		push(&newStack, root->item);
+
+
+// 		if (root->left != NULL) {
+// 			push(&newStack, root-> left);
+// 		}		
+
+
+// 	}
+
+// 	free(newStack);
+
+// }
 
 ///////////////////////////////////////////////////////////////////////////////
 

@@ -113,10 +113,8 @@ void mirrorTree(BTNode *node)
 
     mirrorTree(node -> left);
     mirrorTree(node -> right);
-
     //printf("node-> left: %d\n", node->left);
     //printf("node-> right: %d\n", node->right);
-
 
     temp = node -> left;
     node-> left = node-> right;
